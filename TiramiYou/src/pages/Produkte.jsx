@@ -10,7 +10,8 @@ function Produkte() {
 
   return (
     <div>
-      <h1>Produkte</h1>
+      <h1>Unsere Sorten</h1>
+      <h2>Sechs einzigartige Kreationen - jede ein Geschmackserlebnis</h2>
       <ul>
         {produkte.map(p => <li key={p.id}>{p.name}</li>)}
       </ul>
@@ -19,3 +20,5 @@ function Produkte() {
 }
 
 export default Produkte;
+
+//Diese Seite viel mit Hilfe gemacht also net wundern!
