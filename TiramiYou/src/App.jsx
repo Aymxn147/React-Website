@@ -1,6 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-// Seiten fürs Routing
+import { BrowserRouter, Routes, Route } from 'react-router-dom';    //--> macht Routing möglich
 import TiramiYou from './pages/Home.jsx';
 import Produkte from './pages/Produkte.jsx';
 import Story from './pages/Story.jsx';
