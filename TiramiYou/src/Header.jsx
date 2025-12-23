@@ -19,7 +19,7 @@ export default function Navbar() {
     { name: 'Unsere Tiramisu', href: '#products', icon: Cake },
     { name: 'Über uns', href: '#about', icon: Users },
     { name: 'News', href: '#news', icon: Newspaper },
-    { name: 'Anfahrt', href: '#location', icon: MapPin },
+    { name: 'Anfahrt', href: '/anfahrt', icon: MapPin },
     { name: 'Kontakt', href: '#contact', icon: Phone }
   ];
 
