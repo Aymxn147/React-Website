@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AccessibilityMenu from "../components/AccessibilityMenu";
+import { useEffect } from "react";
 
 /* ======================
    1️⃣ Reviews
@@ -107,6 +108,10 @@ function ReviewCard({ review }) {
    4️⃣ Home Page
 ====================== */
 export default function Home() {
+    useEffect(() => {
+    document.title = "TirmaiYOU";
+  }, []);
+
   return (
     <>
       {/* HERO */}
