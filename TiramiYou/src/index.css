@@ -1,1 +1,5 @@
 @import 'tailwindcss';
+
+.big-cursor * {
+  cursor: url("/images/large-cursor.png") 16 16, auto; /* 16 16 = hotspot */
+}

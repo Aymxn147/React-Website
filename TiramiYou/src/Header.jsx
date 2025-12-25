@@ -15,12 +15,12 @@ export default function Navbar() {
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '#home', icon: HomeIcon },
-    { name: 'Unsere Tiramisu', href: '#products', icon: Cake },
-    { name: 'Über uns', href: '#about', icon: Users },
-    { name: 'News', href: '#news', icon: Newspaper },
+    { name: 'Home', href: '/#home', icon: HomeIcon },
+    { name: 'Unsere Tiramisu', href: '/products', icon: Cake },
+    { name: 'Über uns', href: '/about', icon: Users },
+    { name: 'News', href: '/news', icon: Newspaper },
     { name: 'Anfahrt', href: '/anfahrt', icon: MapPin },
-    { name: 'Kontakt', href: '#contact', icon: Phone }
+    { name: 'Kontakt', href: '/contact', icon: Phone }
   ];
 
   return (
