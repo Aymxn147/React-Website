@@ -9,7 +9,8 @@ export default function Footer() {
 
           {/* Copyright */}
           <p className="text-sm text-gray-600 flex items-center gap-1.5">
-            © 2024 TiramiYou. Made with <Heart className="w-4 h-4 text-pink-500 fill-pink-500" /> in Frankfurt
+            © {new Date().getFullYear()} TiramiYou. Made with{' '}
+            <Heart className="w-4 h-4 text-pink-500 fill-pink-500" /> in Frankfurt
           </p>
 
           {/* Social Media */}
