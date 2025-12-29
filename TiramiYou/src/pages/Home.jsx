@@ -1,31 +1,51 @@
 import { useState } from "react";
 import AccessibilityMenu from "../components/AccessibilityMenu";
+import { useEffect } from "react";
 
 /* ======================
    1️⃣ Reviews
 ====================== */
+/* ======================
+   1️⃣ Reviews (korrigiert)
+====================== */
 const reviews = [
   {
-    name: "Tan Nguyen",
-    text: "Wirklich schöner kleiner Laden. Die Mitarbeiter waren super nett und höflich. Das Tiramisu war unnormal lecker...",
+    name: "Ismar Nurkovic",
+    text: "Total nette Jungs, und das beste Tiramisu der Stadt. Klare Empfehlung",
     stars: 5,
   },
   {
-    name: "Azra Tas",
-    text: "Wir sind auf TikTok drauf gestoßen und musste unbedingt hierhin! Sehr lecker, super Auswahl...",
+    name: "Herolinda Az",
+    text: "Ich finde genau so eine Idee hat im Rhein-Main-Gebiet gefehlt. Das Tiramisu, vor allem das Pistazien-, Haselnuss- und Lotustiramisu hat mir und meinem Partner geschmeckt. Die restlichen Sorten, wie Raffaello- und das klassische Tiramisu werde ich auf jeden Fall auch noch testen. Die Mitarbeiter waren super freundlich, Kunden- und Serviceorientiert und auch die Location ist gelungen gewählt. Weiter so 💪🏼",
     stars: 5,
   },
   {
-    name: "Sadiq BG",
-    text: "Ein absoluter Geheimtipp in Sachsenhausen! Tiramiyu hebt Tiramisu auf ein ganz neues Level...",
+    name: "Arsalan Havaie",
+    text: `Ich bin großer Tiramisu Fan und hatte mich daher sehr auf die Eröffnung gefreut. 
+Ich hatte den Classic und Pistazie probiert und es schmeckt unglaublich gut und das Team ist überaus freundlich und charismatisch. 
+War auch froh noch rechtzeitig vor Ausverkauf da gewesen zu sein und trotz der hohen Nachfrage ein Cappuccino aufs Haus bekommen. 
+#mademyday
+Viel Erfolg, freue mich weitere Sorten zu probieren!`,
     stars: 5,
   },
   {
-    name: "Jannick Schneider",
-    text: "Alles tip top. Noch nie einen Laden gesehen, der komplett auf Tiramisu spezialisiert ist...",
+    name: "Sara G.",
+    text: "Das Classic Tiramisu war echt sehr lecker und die Betreiber sind super freundlich. Kann man nur weiterempfehlen!!!",
+    stars: 5,
+  },
+  {
+    name: "Irfan Nurkovic",
+    text: `Ein neuer Lieblingsort in Frankfurt! Stilvolles, gemütliches Ambiente, superfreundliches Team und himmlische Desserts – das Tiramisu ist einfach perfekt: cremig, frisch und voller Geschmack. Dazu gibt’s hervorragenden Kaffee, der alles abrundet.
+Fazit: Fünf Sterne in jeder Kategorie – Geschmack, Qualität, Service und Atmosphäre. Ein Muss für alle, die guten Kaffee und feine Desserts lieben!`,
+    stars: 5,
+  },
+  {
+    name: "Freazzz",
+    text: "Bestes Tiramisu das ich je gegessen habe und sehr nettes Personal, komme gerne wieder",
     stars: 5,
   },
 ];
+
 
 /* ======================
    2️⃣ Sterne
@@ -54,7 +74,10 @@ function ReviewCard({ review }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="bg-white rounded-xl shadow p-5 flex flex-col gap-3">
+    <div
+      onClick={() => setExpanded(!expanded)}
+      className="bg-white rounded-xl shadow p-5 flex flex-col gap-3 cursor-pointer"
+    >
       <div className="flex items-center gap-3">
         <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center font-semibold">
           {review.name[0]}
@@ -65,21 +88,30 @@ function ReviewCard({ review }) {
         </div>
       </div>
 
-      <p
-        onClick={() => setExpanded(!expanded)}
-        className={`text-sm text-gray-600 cursor-pointer ${expanded ? "" : "line-clamp-3"
-          }`}
-      >
-        {review.text}
+      <p className="text-sm text-gray-600">
+        {expanded ? review.text : review.text.length > 150 ? review.text.slice(0, 150) + "..." : review.text}
+        {review.text.length > 150 && (
+          <span
+            onClick={(e) => { e.stopPropagation(); setExpanded(!expanded); }}
+            className="text-pink-500 font-semibold ml-1"
+          >
+            {expanded ? "weniger" : "mehr"}
+          </span>
+        )}
       </p>
     </div>
   );
 }
 
+
 /* ======================
    4️⃣ Home Page
 ====================== */
 export default function Home() {
+    useEffect(() => {
+    document.title = "TirmaiYOU";
+  }, []);
+
   return (
     <>
       {/* HERO */}
@@ -121,7 +153,7 @@ export default function Home() {
 
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {[
-        { title: "Unsere Tiramisu's", href: "/tiramisu" },
+        { title: "Unsere Tiramisu's", href: "/produkte" },
         { title: "News", href: "/news" },
         { title: "Anfahrt", href: "/anfahrt" },
         { title: "Kontakt", href: "/kontakt" },
