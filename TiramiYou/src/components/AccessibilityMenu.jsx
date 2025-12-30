@@ -35,28 +35,27 @@ export default function AccessibilityMenu() {
   return (
     <>
       {/* Floating Button */}
-<button
-  onClick={() => setOpen(!open)}
-  className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full 
+      <button
+        onClick={() => setOpen(!open)}
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full 
      bg-[rgb(255,147,162)] hover:bg-[rgb(245,130,148)]
      text-white shadow-lg flex items-center justify-center transition"
-  aria-label="Barrierefreiheit"
->
-  <img
-    /*src="images/accessibility.png"            <-- Ist von freepik.com. Darf man nur nutzen wenn man es irgendwo nennt. Such Alternative!!!
-    alt="Accessibility"
-    className="w-9 h-9 filter invert"*/
-  />
-</button>
+        aria-label="Barrierefreiheit"
+      >
+        <img
+          src="images/accessibility.png"
+          alt="Accessibility"
+          className="w-9 h-9 filter invert"
+        />
+      </button>
 
 
       {/* Panel */}
       <div
-        className={`fixed bottom-24 right-6 z-40 w-80 bg-white rounded-2xl shadow-xl p-5 transition-all duration-300 ${
-          open
+        className={`fixed bottom-24 right-6 z-40 w-80 bg-white rounded-2xl shadow-xl p-5 transition-all duration-300 ${open
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-4 pointer-events-none"
-        }`}
+          }`}
       >
         <h3 className="text-lg font-semibold mb-4">
           Barrierefreiheit

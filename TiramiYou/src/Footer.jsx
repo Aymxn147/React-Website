@@ -16,9 +16,9 @@ export default function Footer() {
           {/* Social Media */}
           <div className="flex gap-4">
             {/* Instagram */}
-            <a 
-              href="https://www.instagram.com/tirami.you/" 
-              target="_blank" 
+            <a
+              href="https://www.instagram.com/tirami.you/"
+              target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-gray-600 hover:text-pink-500 transition-colors"
             >
@@ -27,26 +27,26 @@ export default function Footer() {
             </a>
 
             {/* TikTok mit React‑Icons */}
-<a
-  href="https://www.tiktok.com/@tirami.you/"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="flex items-center gap-2 text-gray-600 hover:text-pink-500 transition-colors group"
->
-  {/* TikTok Icon: normal Tiktok-02, auf Hover Tiktok-03 */}
-  <img
-    src="/images/tiktok-02.svg"
-    alt="TikTok"
-    className="w-5 h-5 group-hover:hidden"
-  />
-  <img
-    src="/images/tiktok-03.svg"
-    alt="TikTok"
-    className="w-5 h-5 hidden group-hover:block"
-  />
+            <a
+              href="https://www.tiktok.com/@tirami.you/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-gray-600 hover:text-pink-500 transition-colors group"
+            >
+              {/* TikTok Icon: normal Tiktok-02, auf Hover Tiktok-03 */}
+              <img
+                src="/images/tiktok-02.svg"
+                alt="TikTok"
+                className="w-5 h-5 group-hover:hidden"
+              />
+              <img
+                src="/images/tiktok-03.svg"
+                alt="TikTok"
+                className="w-5 h-5 hidden group-hover:block"
+              />
 
-  <span className="text-sm font-semibold">@tirami.you</span>
-</a>
+              <span className="text-sm font-semibold">@tirami.you</span>
+            </a>
 
           </div>
 

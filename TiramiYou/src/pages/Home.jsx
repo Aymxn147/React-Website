@@ -1,12 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AccessibilityMenu from "../components/AccessibilityMenu";
-import { useEffect } from "react";
+import HomeHero from "../components/HomeHero.jsx";
+import StoreGallery from "../components/StoreGallery";
+
 
 /* ======================
    1️⃣ Reviews
-====================== */
-/* ======================
-   1️⃣ Reviews (korrigiert)
 ====================== */
 const reviews = [
   {
@@ -67,6 +66,7 @@ function Stars({ count }) {
   );
 }
 
+
 /* ======================
    3️⃣ Review Card
 ====================== */
@@ -76,7 +76,7 @@ function ReviewCard({ review }) {
   return (
     <div
       onClick={() => setExpanded(!expanded)}
-      className="bg-white rounded-xl shadow p-5 flex flex-col gap-3 cursor-pointer"
+      className="bg-white rounded-xl shadow p-5 flex flex-col gap-3 cursor-pointer min-w-[250px]"
     >
       <div className="flex items-center gap-3">
         <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center font-semibold">
@@ -89,10 +89,17 @@ function ReviewCard({ review }) {
       </div>
 
       <p className="text-sm text-gray-600">
-        {expanded ? review.text : review.text.length > 150 ? review.text.slice(0, 150) + "..." : review.text}
+        {expanded
+          ? review.text
+          : review.text.length > 150
+            ? review.text.slice(0, 150) + "..."
+            : review.text}
         {review.text.length > 150 && (
           <span
-            onClick={(e) => { e.stopPropagation(); setExpanded(!expanded); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              setExpanded(!expanded);
+            }}
             className="text-pink-500 font-semibold ml-1"
           >
             {expanded ? "weniger" : "mehr"}
@@ -103,115 +110,111 @@ function ReviewCard({ review }) {
   );
 }
 
+function ReviewsCarousel() {
+  const [startIndex, setStartIndex] = useState(0);
+  const visibleCount = 4;
+
+  const handlePrev = () => {
+    setStartIndex((prev) =>
+      (prev - 1 + reviews.length) % reviews.length
+    );
+  };
+
+  const handleNext = () => {
+    setStartIndex((prev) => (prev + 1) % reviews.length);
+  };
+
+  const getVisibleReviews = () => {
+    const visible = [];
+    for (let i = 0; i < visibleCount; i++) {
+      visible.push(reviews[(startIndex + i) % reviews.length]);
+    }
+    return visible;
+  };
+
+  return (
+    <div className="relative max-w-6xl mx-auto">
+      <button
+        onClick={handlePrev}
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white shadow rounded-full p-2 hover:bg-gray-100"
+      >
+        ◀
+      </button>
+
+      <div className="flex gap-6 overflow-hidden">
+        {getVisibleReviews().map((review, i) => (
+          <ReviewCard key={i} review={review} />
+        ))}
+      </div>
+
+      <button
+        onClick={handleNext}
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white shadow rounded-full p-2 hover:bg-gray-100"
+      >
+        ▶
+      </button>
+    </div>
+  );
+}
 
 /* ======================
    4️⃣ Home Page
 ====================== */
 export default function Home() {
-    useEffect(() => {
+  useEffect(() => {
     document.title = "TirmaiYOU";
   }, []);
 
   return (
     <>
       {/* HERO */}
-      <section className="max-w-6xl mx-auto px-4 py-20">
+      <HomeHero />
 
-        <img
-          src="/images/logo.png"
-          alt="Logo"
-          className="mx-auto h-64 object-contain shadow-md rounded-full"
-        />
 
-        <div className="text-center mt-6">
-          <span className="inline-block bg-[rgb(255,186,197)] text-white font-semibold px-6 py-2 rounded-full shadow">
-            Neu in Frankfurt
-          </span>
+
+
+      {/* BEREICHE */}
+      <section className="bg-[rgb(255,240,243)] py-20">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <h2 className="text-xl sm:text-2xl md:text-3xl text-gray-600 mb-12">
+            Entdecke mehr
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: "Unsere Tiramisu's", href: "/produkte" },
+              { title: "News", href: "/news" },
+              { title: "Anfahrt", href: "/anfahrt" },
+              { title: "Kontakt", href: "/kontakt" },
+            ].map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="block bg-white rounded-2xl p-6 text-center shadow hover:shadow-lg transition"
+              >
+                <h3 className="font-semibold">{item.title}</h3>
+              </a>
+            ))}
+          </div>
         </div>
-
-        <div className="text-center py-20 px-4">
-          <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold mb-6 leading-tight">
-            Dein Löffel <br />
-            <span className="text-[rgb(245,130,148)]">Glück</span>
-          </h1>
-
-          <p className="text-xl sm:text-2xl md:text-3xl text-gray-600 max-w-3xl mx-auto">
-            Minimalistisch. Gemütlich. Unwiderstehlich lecker.
-          </p>
-        </div>
-
       </section>
-
-
-
-{/* BEREICHE */}
-<section className="bg-[rgb(255,240,243)] py-20">
-  <div className="max-w-6xl mx-auto px-4 text-center">
-    <h2 className="text-xl sm:text-2xl md:text-3xl text-gray-600 mb-12">
-      Entdecke mehr
-    </h2>
-
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      {[
-        { title: "Unsere Tiramisu's", href: "/produkte" },
-        { title: "News", href: "/news" },
-        { title: "Anfahrt", href: "/anfahrt" },
-        { title: "Kontakt", href: "/kontakt" },
-      ].map((item) => (
-        <a
-          key={item.href}
-          href={item.href}
-          className="block bg-white rounded-2xl p-6 text-center shadow hover:shadow-lg transition"
-        >
-          <h3 className="font-semibold">{item.title}</h3>
-        </a>
-      ))}
-    </div>
-  </div>
-</section>
 
 
 
       {/* LADEN FOTOS */}
-      <section className="max-w-6xl mx-auto px-4 py-20">
-        <h2 className="text-2xl font-semibold text-center mb-10">
-          Unser Laden
-        </h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <img
-            src="/images/pic1.png"
-            alt="Pic1"
-            className="rounded-2xl h-64 w-full object-cover shadow"
-          />
-          <img
-            src="/images/pic2.png"
-            alt="Pic2"
-            className="rounded-2xl h-64 w-full object-cover shadow"
-          />
-          <img
-            src="/images/pic2.png"
-            alt="Pic2"
-            className="rounded-2xl h-64 w-full object-cover shadow"
-          />
-        </div>
-
-      </section>
+      <StoreGallery />
 
       {/* GOOGLE REVIEWS */}
       <section className="max-w-6xl mx-auto px-4 py-20">
         <div className="text-center mb-12">
           <h3 className="text-xl font-semibold">SEHR GUT</h3>
           <div className="flex justify-center items-center gap-2 my-2">
-            <span className="text-lg font-semibold leading-none">
-              4,9
-            </span>
-
+            <span className="text-lg font-semibold leading-none">4,9</span>
             <Stars count={5} />
           </div>
 
           <p className="text-sm text-gray-600">
-            Basierend auf <strong>97 Bewertungen</strong>
+            Basierend auf <strong>108 Bewertungen</strong>
           </p>
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
@@ -220,17 +223,12 @@ export default function Home() {
           />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {reviews.map((review, i) => (
-            <ReviewCard key={i} review={review} />
-          ))}
-        </div>
+        {/* Reviews Carousel */}
+        <ReviewsCarousel />
 
         <AccessibilityMenu />
       </section>
 
-      {/* ACCESSIBILITY */}
-      <AccessibilityMenu />
     </>
   );
 }
