@@ -9,7 +9,7 @@ function Produkte() {
       untertitel: 'Der italienische Klassiker',
       beschreibung: 'Löffelbiskuit in Espresso, Mascarponecreme & Kakaopulver',
       preis: '5,90 €',
-      bild: '/src/assets/Classic.png',
+      bild: '/images/Classic.png',
       bestseller: true,
     },
     {
@@ -17,7 +17,7 @@ function Produkte() {
       untertitel: 'Der Besondere',
       beschreibung: 'Karamellige Lotuscreme & Crunch aus gehackten Biscoff-Keksen',
       preis: '6,90 €',
-      bild: '/src/assets/Lotus.png',
+      bild: '/images/Lotus.png',
       bestseller: true,
     },
     {
@@ -25,7 +25,7 @@ function Produkte() {
       untertitel: "Kinder's Best",
       beschreibung: 'Haselnusscreme mit Krokant und Bueno als Topping',
       preis: '6,90 €',
-      bild: '/src/assets/Bueno.png',
+      bild: '/images/Bueno.png',
       bestseller: true,
     },
     {
@@ -33,21 +33,21 @@ function Produkte() {
       untertitel: 'Enjoyment Pur',
       beschreibung: 'Feine Pistaziencreme & gehackte Pistazien im sehr besonderen Look',
       preis: '7,40 €',
-      bild: '/src/assets/Pistazie.png'
+      bild: '/images/Pistazie.png'
     },
     {
       name: 'Erdbeere',
       untertitel: 'Fruchtgenuss',
       beschreibung: 'Erdbeersoße und weiße Schokolade als Topping',
       preis: '6,90 €',
-      bild: '/src/assets/Erdbeere.png'
+      bild: '/images/Erdbeere.png'
     },
     {
       name: 'Raffaello',
       untertitel: 'Der Feinschmecker',
       beschreibung: 'Kokoscreme, dazu Raffaello als Topping',
       preis: '6,90 €',
-      bild: '/src/assets/Raffaello.png'
+      bild: '/images/Raffaello.png'
     },
   ];
 
