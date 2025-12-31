@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLanguage } from '../LanguageContext';
 import { translations } from '../translations.js';
 
@@ -7,6 +7,9 @@ export default function AccessibilityMenu() {
   const [fontSize, setFontSize] = useState(100);
   const [bigCursor, setBigCursor] = useState(false);
   const { language, setLanguage } = useLanguage();
+
+  const menuRef = useRef(null);
+  const buttonRef = useRef(null);
 
   // Schriftgröße anwenden
   useEffect(() => {
@@ -23,10 +26,8 @@ export default function AccessibilityMenu() {
     if (bigCursor) {
       document.body.style.cursor = "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"60\" height=\"60\" viewBox=\"0 0 24 24\" fill=\"white\" stroke=\"black\" stroke-width=\"1\"><path d=\"M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z\"/></svg>') 12 12, auto";
 
-      // Für interaktive Elemente
       const style = document.createElement('style');
       style.id = 'big-cursor-style';
-      {/*GRÖßE VON CURSOR IM BIG-MODE (und Hover)*/ }
       style.textContent = `
         * { 
           cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 24 24" fill="white" stroke="black" stroke-width="1"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/></svg>') 12 12, auto !important;
@@ -43,6 +44,25 @@ export default function AccessibilityMenu() {
     }
   }, [bigCursor]);
 
+  // Menü schließen, wenn außerhalb geklickt wird
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target)
+      ) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   // Reset
   function resetAll() {
     setFontSize(100);
@@ -54,6 +74,7 @@ export default function AccessibilityMenu() {
     <>
       {/* Floating Button */}
       <button
+        ref={buttonRef}
         onClick={() => setOpen(!open)}
         className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full 
      bg-[rgb(255,147,162)] hover:bg-[rgb(245,130,148)]
@@ -69,10 +90,11 @@ export default function AccessibilityMenu() {
 
       {/* Panel */}
       <div
+        ref={menuRef}
         className={`fixed bottom-24 right-6 z-40 w-80 bg-white rounded-2xl shadow-xl p-5 transition-all duration-300 ${open
           ? "opacity-100 translate-y-0"
           : "opacity-0 translate-y-4 pointer-events-none"
-          }`}
+        }`}
       >
         <h3 className="text-lg font-semibold mb-4">
           {translations[language].accessibility}
