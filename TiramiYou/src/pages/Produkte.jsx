@@ -1,51 +1,55 @@
 import { useState } from 'react';
+import AccessibilityMenu from "../components/AccessibilityMenu";
+import { useLanguage } from '../LanguageContext.jsx'; 
+import { translations } from '../translations.js';
 
 function Produkte() {
+  const { language } = useLanguage();
   const [flippedIndex, setFlippedIndex] = useState(null);
 
   const produktListe = [
     {
       name: 'Classic',
-      untertitel: 'Der italienische Klassiker',
-      beschreibung: 'Löffelbiskuit in Espresso, Mascarponecreme & Kakaopulver',
+      untertitel: translations[language].a,
+      beschreibung: translations[language].a_2,
       preis: '5,90 €',
       bild: '/images/Classic.png',
       bestseller: true,
     },
     {
       name: 'Lotus Biscoff',
-      untertitel: 'Der Besondere',
-      beschreibung: 'Karamellige Lotuscreme & Crunch aus gehackten Biscoff-Keksen',
+      untertitel: translations[language].b,
+      beschreibung: translations[language].b_2,
       preis: '6,90 €',
       bild: '/images/Lotus.png',
       bestseller: true,
     },
     {
       name: 'Bueno',
-      untertitel: "Kinder's Best",
-      beschreibung: 'Haselnusscreme mit Krokant und Bueno als Topping',
+      untertitel: translations[language].c,
+      beschreibung: translations[language].c_2,
       preis: '6,90 €',
       bild: '/images/Bueno.png',
       bestseller: true,
     },
     {
-      name: 'Pistazie',
-      untertitel: 'Enjoyment Pur',
-      beschreibung: 'Feine Pistaziencreme & gehackte Pistazien im sehr besonderen Look',
+      name: translations[language].pistachio,
+      untertitel: translations[language].d,
+      beschreibung: translations[language].d_2,
       preis: '7,40 €',
       bild: '/images/Pistazie.png'
     },
     {
-      name: 'Erdbeere',
-      untertitel: 'Fruchtgenuss',
-      beschreibung: 'Erdbeersoße und weiße Schokolade als Topping',
+      name: translations[language].berry,
+      untertitel: translations[language].e,
+      beschreibung: translations[language].e_2,
       preis: '6,90 €',
       bild: '/images/Erdbeere.png'
     },
     {
       name: 'Raffaello',
-      untertitel: 'Der Feinschmecker',
-      beschreibung: 'Kokoscreme, dazu Raffaello als Topping',
+      untertitel: translations[language].f,
+      beschreibung: translations[language].f_2,
       preis: '6,90 €',
       bild: '/images/Raffaello.png'
     },
@@ -58,10 +62,10 @@ function Produkte() {
         {/* Titel */}
         <div className="text-center mb-14">
           <h1 className="text-5xl md:text-6xl font-black mb-4 text-[#FF93A2]">
-            Unsere Tiramisus
+            {translations[language].tiramisu}
           </h1>
           <p className="text-xl md:text-2xl font-semibold text-gray-700">
-            Frisch zubereitet mit Liebe
+            {translations[language].fresh}
           </p>
         </div>
 
@@ -104,7 +108,7 @@ function Produkte() {
                       {produkt.preis}
                     </p>
                     <p className="mt-2 text-sm text-gray-500">
-                      Klick für Infos
+                      {translations[language].click}
                     </p>
                   </div>
                 </div>
@@ -123,16 +127,16 @@ function Produkte() {
         <div className="mt-16 text-center">
           <div className="bg-white rounded-3xl border-2 border-[#FF93A2] p-8 md:p-12 shadow-xl">
             <h2 className="text-3xl md:text-4xl font-black mb-4" style={{ color: '#FF93A2' }}>
-              Lust bekommen?
+              {translations[language].feel}
             </h2>
             <p className="text-lg md:text-xl text-gray-700 mb-6">
-              Komm vorbei und probiere unsere frischen Tiramisus!
+              {translations[language].come}
             </p>
             <a
               href="/anfahrt"
               className="inline-flex items-center gap-2 px-8 py-4 bg-[#FF93A2] text-white font-bold text-lg rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300"
             >
-              📍 Jetzt besuchen
+              📍 {translations[language].visit}
             </a>
             <div className="mt-4">
               <a
@@ -140,7 +144,7 @@ function Produkte() {
                 download="TiramiYou-Speisekarte.pdf"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#FF93A2] font-bold border-2 border-[#FF93A2] rounded-full hover:bg-[#FF93A2] hover:text-white transition-all duration-300"
               >
-                📥 Speisekarte herunterladen
+                📥 {translations[language].download}
               </a>
             </div>
           </div>
@@ -162,7 +166,9 @@ function Produkte() {
           transform: rotateY(180deg);
         }
       `}</style>
+      <AccessibilityMenu />
     </div>
+
   );
 }
 

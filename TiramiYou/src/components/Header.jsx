@@ -1,8 +1,11 @@
-import { useState, useEffect, useRef} from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Menu, X, MapPin, Home as HomeIcon, Cake, Users, Newspaper, Phone } from 'lucide-react';
-import logoImage from '../src/assets/TiramiYOU.jpg';
+import logoImage from '../assets/TiramiYOU.jpg';
+import { useLanguage } from '../LanguageContext.jsx';
+import { translations } from '../translations.js';
 
 export default function Navbar() {
+  const { language } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef(null);
@@ -16,30 +19,29 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-  const handleClickOutside = (event) => {
-    if (menuRef.current && !menuRef.current.contains(event.target)) {
-      setIsOpen(false);
-    }
-  };
-  document.addEventListener('mousedown', handleClickOutside);
-  return () => document.removeEventListener('mousedown', handleClickOutside);
-}, []);
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const navItems = [
     { name: 'Home', href: '/', icon: HomeIcon },
-    { name: 'Unsere Tiramisu', href: '/produkte', icon: Cake },
-    { name: 'Anfahrt', href: '/anfahrt', icon: MapPin },
-    { name: 'Über uns', href: '/about', icon: Users },
-    { name: 'Kontakt', href: '/contact', icon: Phone },
-    { name: 'News', href: '/news', icon: Newspaper }
+    { name: translations[language].menu, href: '/produkte', icon: Cake },
+    { name: translations[language].direct, href: '/anfahrt', icon: MapPin },
+    { name: translations[language].us, href: '/about', icon: Users },
+    { name: translations[language].news, href: '/news', icon: Newspaper }
   ];
+
 
   return (
     <>
       <nav
-        className={`absolute top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-50 transition-all duration-300 ${
-          scrolled ? 'shadow-2xl py-3' : 'shadow-xl py-4'
-        } backdrop-blur-md rounded-full`}
+        className={`absolute top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-50 transition-all duration-300 ${scrolled ? 'shadow-2xl py-3' : 'shadow-xl py-4'
+          } backdrop-blur-md rounded-full`}
         style={{
           backgroundColor: '#FF93A2',
           borderColor: '#FF93A2',
@@ -82,7 +84,7 @@ export default function Navbar() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="lg:hidden relative w-12 h-12 flex items-center justify-center rounded-full transition-colors"
-              style={{ color: 'white'}}
+              style={{ color: 'white' }}
             >
               {isOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
             </button>
@@ -93,9 +95,8 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div
         ref={menuRef}
-        className={`absolute top-24 left-1/2 -translate-x-1/2 w-[90%] max-w-md lg:hidden z-40 transition-all duration-500 ${
-          isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
-        }`}
+        className={`absolute top-24 left-1/2 -translate-x-1/2 w-[90%] max-w-md lg:hidden z-40 transition-all duration-500 ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
+          }`}
       >
         <div className="px-6 py-6 rounded-3xl shadow-2xl" style={{ backgroundColor: '#FF93A2' }}>
           <div className="flex flex-col gap-2">

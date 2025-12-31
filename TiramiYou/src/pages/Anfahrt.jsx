@@ -1,6 +1,10 @@
 import { MapPin, Navigation } from "lucide-react";
+import AccessibilityMenu from "../components/AccessibilityMenu.jsx";
+import { useLanguage } from '../LanguageContext.jsx'; 
+import { translations } from '../translations.js';
 
 export default function Anfahrt() {
+  const { language } = useLanguage();
   return (
     <div className="min-h-screen py-12 px-6 bg-[#FFF5F7]">
       <div className="max-w-6xl mx-auto">
@@ -8,10 +12,10 @@ export default function Anfahrt() {
         {/* Titel */}
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-6xl font-black mb-4 text-[#FF93A2]">
-            Die besten Tiramisus der Stadt
+            {translations[language].best}
           </h1>
           <p className="text-xl md:text-2xl font-semibold text-gray-700">
-            ...findest du nur hier:
+            {translations[language].here}
           </p>
         </div>
 
@@ -27,14 +31,14 @@ export default function Anfahrt() {
                 <MapPin className="w-7 h-7 text-white" />
               </div>
               <h2 className="text-3xl font-bold text-gray-900">
-                Unser Standort
+                {translations[language].location}
               </h2>
             </div>
 
             {/* Adresse */}
             <div className="mb-8 text-center">
               <p className="text-base font-bold mb-3 text-[#FF93A2]">
-                Adresse
+                {translations[language].addr}
               </p>
               <p className="text-xl font-semibold text-gray-900 leading-relaxed">
                 Schneckenhofstraße 7<br />
@@ -45,27 +49,27 @@ export default function Anfahrt() {
             {/* Öffnungszeiten */}
             <div className="mb-8">
               <p className="text-base font-bold mb-4 text-[#FF93A2] text-center">
-                Öffnungszeiten
+                {translations[language].open}
               </p>
 
               <div className="space-y-3 text-gray-700 text-base">
                 <div className="flex justify-between">
-                  <span>Mo – Do</span>
+                  <span>{translations[language].mo} – {translations[language].do}</span>
                   <span className="font-semibold">15:00 – 20:30</span>
                 </div>
 
                 <div className="flex justify-between">
-                  <span>Freitag</span>
+                  <span>{translations[language].fr}</span>
                   <span className="font-semibold">15:30 – 22:00</span>
                 </div>
 
                 <div className="flex justify-between">
-                  <span>Samstag</span>
+                  <span>{translations[language].sa}</span>
                   <span className="font-semibold">14:00 – 22:30</span>
                 </div>
 
                 <div className="flex justify-between">
-                  <span>Sonntag</span>
+                  <span>{translations[language].su}</span>
                   <span className="font-semibold">14:00 – 21:30</span>
                 </div>
               </div>
@@ -79,7 +83,7 @@ export default function Anfahrt() {
               className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#FF93A2] text-white font-bold rounded-full hover:shadow-2xl hover:scale-105 transition-all"
             >
               <Navigation className="w-5 h-5" />
-              Route planen
+              {translations[language].route}
             </a>
           </div>
 
@@ -99,6 +103,8 @@ export default function Anfahrt() {
 
         </div>
       </div>
+      <AccessibilityMenu />
     </div>
+    
   );
 }

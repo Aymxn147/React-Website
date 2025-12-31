@@ -4,3 +4,12 @@ body.big-cursor,
 body.big-cursor * {
   cursor: url("/images/large-cursor.png") 32 32, auto !important;
 }
+
+/* global.css oder Tailwind config */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE und Edge */
+  scrollbar-width: none;     /* Firefox */
+}

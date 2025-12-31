@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useLanguage } from '../LanguageContext.jsx';
+import { translations } from '../translations.js';
 
 const heroSlides = [
   { type: "image", src: "/images/pic1.png" },
@@ -7,6 +9,7 @@ const heroSlides = [
 ];
 
 export default function HomeHero() {
+  const { language } = useLanguage();
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
@@ -37,13 +40,13 @@ export default function HomeHero() {
           />
           
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-tight">
-            Dein Löffel<br />
-            <span style={{ color: '#FF93A2' }}>Glück</span>
+            {translations[language].spoonful}<br />
+            <span style={{ color: '#FF93A2' }}>{translations[language].happy}</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-700 font-semibold max-w-lg mx-auto lg:mx-0">
-            Minimalistisch. Gemütlich.<br />
-            Unwiderstehlich lecker.
+            {translations[language].cozy}<br />
+            {translations[language].yum}
           </p>
         </div>
 

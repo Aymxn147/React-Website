@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import AccessibilityMenu from "../components/AccessibilityMenu";
 import HomeHero from "../components/HomeHero.jsx";
 import StoreGallery from "../components/StoreGallery";
+import { useLanguage } from '../LanguageContext.jsx';
+import { translations } from '../translations.js';
 
 
 /* ======================
@@ -72,11 +74,21 @@ function Stars({ count }) {
 ====================== */
 function ReviewCard({ review }) {
   const [expanded, setExpanded] = useState(false);
+  const isLong = review.text.length > 150;
+
+  const displayText = !expanded && isLong
+    ? review.text.slice(0, 150)
+    : review.text;
+
+  // Klick auf die gesamte Box nur erlaubt, wenn Text länger als 150 Zeichen
+  const handleClick = () => {
+    if (isLong) setExpanded(!expanded);
+  };
 
   return (
     <div
-      onClick={() => setExpanded(!expanded)}
-      className="bg-white rounded-xl shadow p-5 flex flex-col gap-3 cursor-pointer min-w-[250px]"
+      onClick={handleClick}
+      className="bg-white rounded-xl shadow p-5 flex flex-col gap-3 cursor-pointer w-[300px] flex-shrink-0"
     >
       <div className="flex items-center gap-3">
         <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center font-semibold">
@@ -89,18 +101,15 @@ function ReviewCard({ review }) {
       </div>
 
       <p className="text-sm text-gray-600">
-        {expanded
-          ? review.text
-          : review.text.length > 150
-            ? review.text.slice(0, 150) + "..."
-            : review.text}
-        {review.text.length > 150 && (
+        {displayText}
+        {isLong && !expanded && "..."}
+        {isLong && (
           <span
             onClick={(e) => {
               e.stopPropagation();
               setExpanded(!expanded);
             }}
-            className="text-pink-500 font-semibold ml-1"
+            className="text-pink-500 font-semibold ml-1 cursor-pointer"
           >
             {expanded ? "weniger" : "mehr"}
           </span>
@@ -110,19 +119,14 @@ function ReviewCard({ review }) {
   );
 }
 
+
+
 function ReviewsCarousel() {
   const [startIndex, setStartIndex] = useState(0);
   const visibleCount = 4;
 
-  const handlePrev = () => {
-    setStartIndex((prev) =>
-      (prev - 1 + reviews.length) % reviews.length
-    );
-  };
-
-  const handleNext = () => {
-    setStartIndex((prev) => (prev + 1) % reviews.length);
-  };
+  const handlePrev = () => setStartIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
+  const handleNext = () => setStartIndex((prev) => (prev + 1) % reviews.length);
 
   const getVisibleReviews = () => {
     const visible = [];
@@ -134,33 +138,52 @@ function ReviewsCarousel() {
 
   return (
     <div className="relative max-w-6xl mx-auto">
+      {/* Linker Pfeil */}
       <button
         onClick={handlePrev}
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white shadow rounded-full p-2 hover:bg-gray-100"
+        className="absolute left-[-75px] top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-r from-pink-400 to-pink-500 rounded-full p-4 hover:from-pink-500 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-xl"
       >
-        ◀
+        <svg
+          className="w-6 h-6 text-white"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+        </svg>
       </button>
 
-      <div className="flex gap-6 overflow-hidden">
+      <div className="flex gap-6 overflow-x-auto items-start scrollbar-none">
         {getVisibleReviews().map((review, i) => (
           <ReviewCard key={i} review={review} />
         ))}
       </div>
 
+      {/* Rechter Pfeil */}
       <button
         onClick={handleNext}
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white shadow rounded-full p-2 hover:bg-gray-100"
+        className="absolute right-[-75px] top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-l from-pink-400 to-pink-500 rounded-full p-4 hover:from-pink-500 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-xl"
       >
-        ▶
+        <svg
+          className="w-6 h-6 text-white rotate-180"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+        </svg>
       </button>
+
     </div>
   );
 }
+
 
 /* ======================
    4️⃣ Home Page
 ====================== */
 export default function Home() {
+  const { language } = useLanguage();
   useEffect(() => {
     document.title = "TirmaiYOU";
   }, []);
@@ -177,15 +200,14 @@ export default function Home() {
       <section className="bg-[rgb(255,240,243)] py-20">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <h2 className="text-xl sm:text-2xl md:text-3xl text-gray-600 mb-12">
-            Entdecke mehr
+            {translations[language].more}
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: "Unsere Tiramisu's", href: "/produkte" },
-              { title: "News", href: "/news" },
-              { title: "Anfahrt", href: "/anfahrt" },
-              { title: "Kontakt", href: "/kontakt" },
+              { title: translations[language].tiramisu, href: "/produkte" },
+              { title: translations[language].news, href: "/news" },
+              { title: translations[language].direct, href: "/anfahrt" },
             ].map((item) => (
               <a
                 key={item.href}
@@ -195,6 +217,7 @@ export default function Home() {
                 <h3 className="font-semibold">{item.title}</h3>
               </a>
             ))}
+
           </div>
         </div>
       </section>
@@ -207,14 +230,14 @@ export default function Home() {
       {/* GOOGLE REVIEWS */}
       <section className="max-w-6xl mx-auto px-4 py-20">
         <div className="text-center mb-12">
-          <h3 className="text-xl font-semibold">SEHR GUT</h3>
+          <h3 className="text-xl font-semibold">{translations[language].good}</h3>
           <div className="flex justify-center items-center gap-2 my-2">
             <span className="text-lg font-semibold leading-none">4,9</span>
             <Stars count={5} />
           </div>
 
           <p className="text-sm text-gray-600">
-            Basierend auf <strong>108 Bewertungen</strong>
+            {translations[language].based} <strong>108 {translations[language].review}</strong>
           </p>
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"

@@ -1,5 +1,10 @@
+import { useLanguage } from '../LanguageContext.jsx'; 
+import { translations } from '../translations.js';
+
 function NotFound() {
-  return <h1>Seite nicht gefunden (404)</h1>;
+  const { language } = useLanguage();
+
+  return <h1>{translations[language].fnf} (404)</h1>;
 }
 
 export default NotFound;
