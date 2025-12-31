@@ -75,20 +75,21 @@ export default function StoreGallery() {
                 </svg>
             </button>
 
-            <div className="flex gap-4 overflow-hidden">
-                {getVisibleImages().map((src, i) => {
-                    const globalIndex = (startIndex + i) % storeImages.length;
-                    return (
-                        <img
-                            key={i}
-                            src={src}
-                            alt={`Store ${i}`}
-                            className="rounded-2xl h-64 w-64 object-cover shadow flex-shrink-0 cursor-pointer hover:scale-105 transition-transform"
-                            onClick={() => setSelectedIndex(globalIndex)}
-                        />
-                    );
-                })}
-            </div>
+            <div className="flex gap-4 overflow-x-auto scrollbar-none touch-pan-x scroll-smooth">
+  {getVisibleImages().map((src, i) => {
+    const globalIndex = (startIndex + i) % storeImages.length;
+    return (
+      <img
+        key={i}
+        src={src}
+        alt={`Store ${i}`}
+        className="rounded-2xl h-64 w-64 object-cover shadow flex-shrink-0 cursor-pointer hover:scale-105 transition-transform scroll-snap-start"
+        onClick={() => setSelectedIndex(globalIndex)}
+      />
+    );
+  })}
+</div>
+
 
             {/* Rechter Pfeil */}
             <button
@@ -111,6 +112,7 @@ export default function StoreGallery() {
                     className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
                     onClick={() => setSelectedIndex(null)}
                 >
+                    
                     {/* Linker Pfeil */}
                     <button
                         onClick={handleModalPrev}

@@ -141,7 +141,7 @@ function ReviewsCarousel() {
       {/* Linker Pfeil */}
       <button
         onClick={handlePrev}
-        className="absolute left-[-75px] top-1/2 transform -translate-y-1/2 z-10 bg-[#FF93A2] rounded-full p-4 hover:bg-[#FF7B8C] transition-all duration-300 shadow-lg hover:shadow-xl">        
+        className="absolute left-[-75px] top-1/2 transform -translate-y-1/2 z-10 bg-[#FF93A2] rounded-full p-4 hover:bg-[#FF7B8C] transition-all duration-300 shadow-lg hover:shadow-xl">
         <svg
           className="w-6 h-6 text-white"
           fill="none"
@@ -152,9 +152,12 @@ function ReviewsCarousel() {
         </svg>
       </button>
 
-      <div className="flex gap-6 overflow-x-auto items-start scrollbar-none">
+      {/* Scrollbarer Container */}
+      <div className="flex gap-6 overflow-x-auto scrollbar-none items-start scroll-snap-x touch-pan-x -webkit-overflow-scrolling:touch">
         {getVisibleReviews().map((review, i) => (
-          <ReviewCard key={i} review={review} />
+          <div className="scroll-snap-start">
+            <ReviewCard key={i} review={review} />
+          </div>
         ))}
       </div>
 
@@ -171,10 +174,10 @@ function ReviewsCarousel() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
         </svg>
       </button>
-
     </div>
   );
 }
+
 
 
 /* ======================

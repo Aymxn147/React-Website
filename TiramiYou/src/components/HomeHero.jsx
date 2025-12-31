@@ -21,7 +21,7 @@ export default function HomeHero() {
 
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden" style={{ backgroundColor: '#FFF5F7' }}>
-      
+
       {/* Hintergrund Dekoration */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 right-10 w-72 h-72 bg-pink-200/30 rounded-full blur-3xl"></div>
@@ -30,20 +30,20 @@ export default function HomeHero() {
 
       {/* Content Container */}
       <div className="relative z-10 flex w-full items-center justify-between px-12 lg:px-16"> {/*<-- HIER!!!*/}
-        
+
         {/* Links - Text & Logo */}
         <div className="text-center lg:text-left space-y-8">
-          <img 
-            src="/images/logo.png" 
-            alt="TiramiYou Logo" 
+          <img
+            src="/images/logo.png"
+            alt="TiramiYou Logo"
             className="h-32 md:h-40 mx-auto lg:mx-0 drop-shadow-xl"
           />
-          
+
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-black leading-tight">
             {translations[language].spoonful}<br />
             <span style={{ color: '#FF93A2' }}>{translations[language].happy}</span>
           </h1>
-          
+
           <p className="text-xl md:text-2xl text-gray-700 font-semibold max-w-lg mx-auto lg:mx-0">
             {translations[language].cozy}<br />
             {translations[language].yum}
@@ -57,9 +57,8 @@ export default function HomeHero() {
             {heroSlides.map((slide, index) => (
               <div
                 key={index}
-                className={`absolute inset-0 transition-opacity duration-1000 ${
-                  index === currentSlide ? 'opacity-100' : 'opacity-0'
-                }`}
+                className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0'
+                  }`}
               >
                 {slide.type === 'image' ? (
                   <img
@@ -86,11 +85,10 @@ export default function HomeHero() {
               <button
                 key={index}
                 onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentSlide 
-                    ? 'w-8' 
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide
+                    ? 'w-8'
                     : 'bg-pink-300'
-                }`}
+                  }`}
                 style={index === currentSlide ? { backgroundColor: '#FF93A2' } : {}}
               />
             ))}
