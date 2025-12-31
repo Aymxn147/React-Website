@@ -141,8 +141,7 @@ function ReviewsCarousel() {
       {/* Linker Pfeil */}
       <button
         onClick={handlePrev}
-        className="absolute left-[-75px] top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-r from-pink-400 to-pink-500 rounded-full p-4 hover:from-pink-500 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-xl"
-      >
+        className="absolute left-[-75px] top-1/2 transform -translate-y-1/2 z-10 bg-[#FF93A2] rounded-full p-4 hover:bg-[#FF7B8C] transition-all duration-300 shadow-lg hover:shadow-xl">        
         <svg
           className="w-6 h-6 text-white"
           fill="none"
@@ -162,8 +161,7 @@ function ReviewsCarousel() {
       {/* Rechter Pfeil */}
       <button
         onClick={handleNext}
-        className="absolute right-[-75px] top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-l from-pink-400 to-pink-500 rounded-full p-4 hover:from-pink-500 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-xl"
-      >
+        className="absolute right-[-75px] top-1/2 transform -translate-y-1/2 z-10 bg-[#FF93A2] rounded-full p-4 hover:bg-[#FF7B8C] transition-all duration-300 shadow-lg hover:shadow-xl">
         <svg
           className="w-6 h-6 text-white rotate-180"
           fill="none"
@@ -193,9 +191,6 @@ export default function Home() {
       {/* HERO */}
       <HomeHero />
 
-
-
-
       {/* BEREICHE */}
       <section className="bg-[rgb(255,240,243)] py-20">
         <div className="max-w-6xl mx-auto px-4 text-center">
@@ -222,8 +217,6 @@ export default function Home() {
         </div>
       </section>
 
-
-
       {/* LADEN FOTOS */}
       <StoreGallery />
 
@@ -237,7 +230,7 @@ export default function Home() {
           </div>
 
           <p className="text-sm text-gray-600">
-            {translations[language].based} <strong>108 {translations[language].review}</strong>
+            {translations[language].based} <strong>109 {translations[language].review}</strong>
           </p>
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"

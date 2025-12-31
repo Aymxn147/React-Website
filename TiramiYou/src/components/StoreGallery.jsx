@@ -64,8 +64,7 @@ export default function StoreGallery() {
             {/* Linker Pfeil */}
             <button
                 onClick={handlePrev}
-                className="absolute left-[-50px] top-[280px] transform -translate-y-1/2 z-10 bg-gradient-to-r from-pink-400 to-pink-500 rounded-full p-4 hover:from-pink-500 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
+                className="absolute left-[-50px] top-[280px] transform -translate-y-1/2 z-10 bg-[#FF93A2] rounded-full p-4 hover:bg-[#FF7B8C] transition-all duration-300 shadow-lg hover:shadow-xl"            >
                 <svg
                     className="w-6 h-6 text-white"
                     fill="none"
@@ -94,7 +93,7 @@ export default function StoreGallery() {
             {/* Rechter Pfeil */}
             <button
                 onClick={handleNext}
-                className="absolute right-[0px] top-[280px] transform -translate-y-1/2 z-10 bg-gradient-to-l from-pink-400 to-pink-500 rounded-full p-4 hover:from-pink-500 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="absolute right-[0px] top-[280px] transform -translate-y-1/2 z-10 bg-[#FF93A2] rounded-full p-4 hover:bg-[#FF7B8C] transition-all duration-300 shadow-lg hover:shadow-xl"
             >
                 <svg
                     className="w-6 h-6 text-white rotate-180"
@@ -115,8 +114,7 @@ export default function StoreGallery() {
                     {/* Linker Pfeil */}
                     <button
                         onClick={handleModalPrev}
-                        className="absolute left-[100px] top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-r from-pink-400 to-pink-500 rounded-full p-4 hover:from-pink-500 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-xl"
-                    >
+                        className="absolute left-[100px] top-1/2 transform -translate-y-1/2 z-10 bg-[#FF93A2] rounded-full p-4 hover:bg-[#FF7B8C] transition-all duration-300 shadow-lg hover:shadow-xl"                    >
                         <svg
                             className="w-6 h-6 text-white"
                             fill="none"
@@ -137,8 +135,7 @@ export default function StoreGallery() {
                     {/* Rechter Pfeil */}
                     <button
                         onClick={handleModalNext}
-                        className="absolute right-[100px] top-1/2 transform -translate-y-1/2 z-10 bg-gradient-to-l from-pink-400 to-pink-500 rounded-full p-4 hover:from-pink-500 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-xl"
-                    >
+                        className="absolute right-[100px] top-1/2 transform -translate-y-1/2 z-10 bg-[#FF93A2] rounded-full p-4 hover:bg-[#FF7B8C] transition-all duration-300 shadow-lg hover:shadow-xl"                    >
                         <svg
                             className="w-6 h-6 text-white rotate-180"
                             fill="none"
