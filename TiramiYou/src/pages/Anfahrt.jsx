@@ -54,7 +54,7 @@ export default function Anfahrt() {
 
               <div className="space-y-3 text-gray-700 text-base">
                 <div className="flex justify-between">
-                  <span>{translations[language].mo} – {translations[language].do}</span>
+                  <span>{translations[language].mo} – {translations[language].th}</span>
                   <span className="font-semibold">15:00 – 20:30</span>
                 </div>
 
