@@ -78,7 +78,7 @@ export const translations = {
         click: "Click for Infos",
         come: "Come by and try our fresh Tiramisus!",
         cozy: "Minimalist. Cozy.",
-        direct: "Directions",
+        direct: "Location",
         download: " Download menu",
         feel: "Feel like it?",
         fnf: "File not found",
